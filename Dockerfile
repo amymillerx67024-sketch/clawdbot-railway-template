@@ -18,4 +18,4 @@ COPY src ./src
 EXPOSE 8080
 
 ENTRYPOINT ["tini", "--"]
-CMD ["node", "src/server.js"]
+CMD ["sh", "-lc", "if [ -f /data/.openclaw/agents/main/sessions/sessions.json ]; then openclaw doctor --session-sqlite import --session-sqlite-all-agents --yes; fi; exec node src/server.js"]
